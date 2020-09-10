@@ -1,10 +1,16 @@
 import React from "react";
 import "./Home.css";
 import Product from "./Product";
+import { motion } from "framer-motion";
 
 function Home() {
   return (
-    <div className="home">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="home"
+    >
       <div className="home__container">
         <img
           className="home__image"
@@ -90,7 +96,7 @@ function Home() {
           rating={5}
         />
       </div>
-    </div>
+    </motion.div>
   );
 }
 

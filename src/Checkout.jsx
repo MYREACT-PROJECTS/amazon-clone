@@ -3,11 +3,18 @@ import "./Checkout.css";
 import BasketItem from "./BasketItem";
 import Subtotal from "./Subtotal";
 import { useStateValue } from "./contexts/ProductContext";
+import FlipMove from "react-flip-move";
+import { motion } from "framer-motion";
 
 function Checkout() {
-  const [{ basket }] = useStateValue();
+  const [{ basket }, dispatch] = useStateValue();
   return (
-    <div className="checkout">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="checkout"
+    >
       <div className="checkout__left">
         <img
           className="checkout__img"
@@ -20,13 +27,21 @@ function Checkout() {
             Your Shopping Cart
             {basket.length !== 0 ? ` hat ${basket.length} items` : " is empty"}
           </h2>
-          <BasketItem />
+          {basket.map((item) => (
+            <BasketItem
+              id={item.id}
+              title={item.title}
+              price={item.price}
+              image={item.image}
+              rating={item.rating}
+            />
+          ))}
         </div>
       </div>
       <div className="checkout__right">
         <Subtotal />
       </div>
-    </div>
+    </motion.div>
   );
 }
 

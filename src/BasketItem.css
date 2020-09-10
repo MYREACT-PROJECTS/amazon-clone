@@ -1,1 +1,36 @@
 /* BasketItem style */
+.basket {
+  display: flex;
+  margin: 20px 0 20px 0;
+}
+
+
+.basket__image {
+  object-fit: content;
+  width: 180px;
+  height: 180px;
+}
+
+.basket__info{
+    /*display: flex;*/
+    padding-left: 20px;
+    /*flex-direction: column;*/
+}
+
+.basket__title{
+    font-size: 17px;
+    font-weight: 800px;
+}
+
+.basket__rating{
+    display: flex;
+}
+
+.basket__button {
+  background-color: orange;
+  border: 1px solid orange;
+  margin-top: 10px;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 10px;
+}

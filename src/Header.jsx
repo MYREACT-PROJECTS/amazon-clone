@@ -1,12 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Header.css";
 import Search from "@material-ui/icons/Search";
 import ShoppingCart from "@material-ui/icons/ShoppingCart";
 import { Link } from "react-router-dom";
+import { auth } from "./firebase";
 import { useStateValue } from "./contexts/ProductContext";
+import { useSpring, animated } from "react-spring";
 
 function Header() {
-  const [{basket}] = useStateValue();
+  const [{ basket, user }] = useStateValue();
+  const handleAuthentication = () => {
+    console.log(user);
+    if (user) {
+      auth.signOut();
+    }
+  };
   return (
     <div className="header">
       <Link to="/">
@@ -22,8 +30,14 @@ function Header() {
       </div>
       <div className="header__nav">
         <div className="header__option">
-          <span className="header__optionOne">Hello Guest</span>
-          <span className="header__optionTwo">Sign In</span>
+          <span className="header__optionOne">
+            Hello {user ? `${user.email}` : "Guest"}
+          </span>
+          <Link to={!user && "/login"}>
+            <span onClick={handleAuthentication} className="header__optionTwo">
+              {user ? "Sign Out" : "Sign In"}{" "}
+            </span>
+          </Link>
         </div>
         <div className="header__option">
           <span className="header__optionOne">Returns</span>
@@ -37,7 +51,15 @@ function Header() {
           <Link to="/checkout">
             <ShoppingCart />
           </Link>
-          <span className="header__optionTwo header__basketCount">{basket.length}</span>
+          <span
+            className={
+              basket.length > 0
+                ? "header__optionTwo header__basketCount--green"
+                : "header__optionTwo header__basketCount"
+            }
+          >
+            {basket.length}
+          </span>
         </div>
       </div>
     </div>

@@ -55,6 +55,8 @@
 .header__optionTwo {
   font-size: 12px;
   font-weight: 800px;
+  text-decoration: none;
+  color: white;
 }
 
 .header__optionBasket{
@@ -63,6 +65,17 @@
     color: white;
 }
 
+.header__optionBasket > a > .MuiSvgIcon-root{
+    text-decoration: none;
+    color: white;
+}
+
 .header__basketCount{
    margin: 0 10px 0 10px; 
+}
+
+.header__basketCount--green{
+    background-color: green;
+    border-radius: 50%;
+    padding: 0 4px 2px 4px;
 }

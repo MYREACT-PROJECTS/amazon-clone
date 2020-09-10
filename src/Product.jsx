@@ -3,9 +3,9 @@ import "./Product.css";
 import { useStateValue } from "./contexts/ProductContext";
 
 function Product(props) {
-  const [basket, dispath] = useStateValue();
+  const [basket, dispatch] = useStateValue();
   const addToBasket = () => {
-    dispath({
+    dispatch({
       type: "ADD_PRODUCT",
       item: {
         id: props.id,
