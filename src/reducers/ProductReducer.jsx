@@ -4,7 +4,6 @@ export const initialState = {
 };
 
 export const productReducer = (state, action) => {
-  console.log(action);
   switch (action.type) {
     case "ADD_PRODUCT":
       return {
@@ -13,7 +12,7 @@ export const productReducer = (state, action) => {
       };
     case "REMOVE_PRODUCT":
       const index = state.basket.findIndex(
-        (basketItem) => basketItem.id == action.id
+        (basketItem) => basketItem.id === action.id
       );
       let newBasket = [...state.basket];
       if (index >= 0) {
@@ -31,6 +30,11 @@ export const productReducer = (state, action) => {
       return {
         ...state,
         user: action.user,
+      };
+    case "EMPTY_BASKET":
+      return {
+        ...state,
+        basket: [],
       };
     default:
       return state;

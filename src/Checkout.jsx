@@ -3,7 +3,6 @@ import "./Checkout.css";
 import BasketItem from "./BasketItem";
 import Subtotal from "./Subtotal";
 import { useStateValue } from "./contexts/ProductContext";
-import FlipMove from "react-flip-move";
 import { motion } from "framer-motion";
 
 function Checkout() {
@@ -28,7 +27,7 @@ function Checkout() {
             {basket.length !== 0 ? ` hat ${basket.length} items` : " is empty"}
           </h2>
           {basket.map((item) => (
-            <BasketItem
+            <BasketItem key={item.id}
               id={item.id}
               title={item.title}
               price={item.price}

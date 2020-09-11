@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import "./BasketItem.css";
 import { useStateValue } from "./contexts/ProductContext";
 
@@ -26,7 +26,8 @@ function BasketItem(props) {
               <p>&#11088;</p>
             ))}
         </div>
-        <button onClick={removeFromBasket} className="basket__button">Remove from basket</button>
+            {!props.hideButton && (
+        <button onClick={removeFromBasket} className="basket__button">Remove from basket</button>)}
       </div>
     </div>
   );
